@@ -1,1 +1,1 @@
-This is the Xilinx ISE Project for the FPGA.  It should build right out of the box although you may need to regenerate the IP cores should they fail to synthesize.
+This is the Xilinx ISE Project for the FPGA.  It should build right out of the box, although you may need to regenerate the IP cores if they fail to synthesize.
