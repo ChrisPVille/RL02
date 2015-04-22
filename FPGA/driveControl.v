@@ -61,16 +61,16 @@ module driveControl(
 	reg [3:0] return_state;
 	
 	parameter [3:0]
-		CNC_INIT						= 4'b0000, //Initialize the drive
-		CNC_IDLE     				= 4'b0001, //Wait here until we recieve an instruction
-		CNC_DECODE	 				= 4'b0010, //Instruction Decode
-		CNC_SEEK_CMD_SETUP		= 4'b0011, //Prepare the command to move the drive
-		CNC_CMD_SECTORWAIT		= 4'b0100, //Wait for the sector pulse
-		CNC_CMD_EXECUTE	 		= 4'b0101, //Issue the command to seek
-		CNC_SEEK_WAIT				= 4'b0110, //Wait for drive ready
-		CNC_WRITE_SETUP			= 4'b0111, //Gather the sector requested from the drive and prep the write queue
-		CNC_WRITE_SYNC				= 4'b1000, //Wait for the FIFO to fill enough, then wait for our sector number to come up
-		CNC_WRITE_EXECUTE			= 4'b1001; //Execute the write bits
+		CNC_INIT               	= 4'b0000, //Initialize the drive
+		CNC_IDLE                = 4'b0001, //Wait here until we recieve an instruction
+		CNC_DECODE              = 4'b0010, //Instruction Decode
+		CNC_SEEK_CMD_SETUP      = 4'b0011, //Prepare the command to move the drive
+		CNC_CMD_SECTORWAIT      = 4'b0100, //Wait for the sector pulse
+		CNC_CMD_EXECUTE    	    = 4'b0101, //Issue the command to seek
+		CNC_SEEK_WAIT           = 4'b0110, //Wait for drive ready
+		CNC_WRITE_SETUP         = 4'b0111, //Gather the sector requested from the drive and prep the write queue
+		CNC_WRITE_SYNC          = 4'b1000, //Wait for the FIFO to fill enough, then wait for our sector number to come up
+		CNC_WRITE_EXECUTE       = 4'b1001; //Execute the write bits
 
 	assign drive_clock = clockDivider[3];
 	
@@ -241,7 +241,7 @@ module driveControl(
 						writeDataPipeline <= {writeDataPipeline[2:0], SPICommandWord[curSPIBit]};
 						curSPIBit <= curSPIBit + 1;
 						casez (writeDataPipeline)//Bits [3] and [2] were previously written, bit [1] is the current bit to write and bit [0] is the next bit
-							//The [1] bit is expanded to the full 65MHz clock time via compensatedWriteDataToDrive to simplify writing and accomplish peak shifting (see RL-02 tech guide)
+							//The [1] bit is expanded to the full 65MHz clock time via compensatedWriteDataToDrive to simplify writing and accomplish peak shifting (see RL02 Theory Of Operation)
 							4'b0000:
 								if(SPICommandWord[curSPIBit]) begin //If our next bit is a one
 									compensatedWriteDataToDrive <= 16'b0000111111111110;//0111 (becomes 10) with Write Early
@@ -290,20 +290,4 @@ module driveControl(
 		end
 	end
 	 
-	 //Shift in the SPI command word if not empty
-	 //Once we have enough bits for instruction decode (so a FSM is needed)
-	 
-	 //IDLE
-		//wait for not FIFO empty
-	 //Instruction Decode (6 bit command, 10 bits data)
-		//If read command, do position (head, cyl in the other 10 bits as customary)
-	 //Send position command and wait for drive ready then read/write (need to compute cyl difference and check for reposition commands with no effect (because we are there) and filter)
-	 //read -> idle (maybe)
-	 //write wait for prog_full then queue write
-	 //wait for our sector number to come up and state PO1 (TIMING IS EVERYTHING HERE) then start shifting data out, also, inhibit the reading
-	 
-	 
-	 
-
-
 endmodule
