@@ -2,6 +2,12 @@
 
 TODO Describe
 
+Folder list:
+board          - KiCad project, schematics and gerbers for board
+FPGA           - Xilinx ISE Project
+uC             - TI CCS project and C sources for micro-controller
+Reference Docs - Supporting documentation for the RL02 and related electronics
+
 (C) 2015 Christopher Parish
 
 This program is free software: you can redistribute it and/or modify
