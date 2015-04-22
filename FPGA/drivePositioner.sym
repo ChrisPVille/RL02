@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="drivePositioner">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2015-3-4T7:53:17</timestamp>
+    <attr value="drivePositioner" name="VeriModel" />
+    <pin polarity="Input" x="0" y="-288" name="clk" />
+    <pin polarity="Input" x="0" y="-224" name="rst" />
+    <pin polarity="Input" x="0" y="-160" name="SPICommandBit" />
+    <pin polarity="Input" x="0" y="-96" name="SPIFIFOEmpty" />
+    <pin polarity="Input" x="0" y="-32" name="sector_pulse" />
+    <pin polarity="Input" x="0" y="32" name="sectorNumInReady" />
+    <pin polarity="Input" x="0" y="96" name="cylNumInReady" />
+    <pin polarity="Input" x="0" y="160" name="headNumIn" />
+    <pin polarity="Input" x="0" y="224" name="headNumInReady" />
+    <pin polarity="Input" x="0" y="288" name="sectorNumIn(5:0)" />
+    <pin polarity="Input" x="0" y="352" name="cylNumIn(8:0)" />
+    <pin polarity="Output" x="464" y="32" name="FIFOReadEnable" />
+    <pin polarity="Output" x="464" y="-224" name="inhibit_read" />
+    <pin polarity="Output" x="464" y="-160" name="writeData" />
+    <pin polarity="Output" x="464" y="-96" name="writeGate" />
+    <pin polarity="Output" x="464" y="-32" name="driveCommand" />
+    <graph>
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="232" y="-328" type="symbol" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-288" type="pin clk" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin rst" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-160" type="pin SPICommandBit" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-96" type="pin SPIFIFOEmpty" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-32" type="pin sector_pulse" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="32" type="pin sectorNumInReady" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="96" type="pin cylNumInReady" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="160" type="pin headNumIn" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="224" type="pin headNumInReady" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="288" type="pin sectorNumIn(5:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="352" type="pin cylNumIn(8:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="32" type="pin FIFOReadEnable" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-224" type="pin inhibit_read" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-160" type="pin writeData" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-96" type="pin writeGate" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-32" type="pin driveCommand" />
+        <line x2="0" y1="32" y2="32" x1="64" />
+        <line x2="0" y1="96" y2="96" x1="64" />
+        <line x2="0" y1="160" y2="160" x1="64" />
+        <line x2="0" y1="224" y2="224" x1="64" />
+        <rect width="64" x="0" y="276" height="24" />
+        <line x2="0" y1="288" y2="288" x1="64" />
+        <rect width="64" x="0" y="340" height="24" />
+        <line x2="0" y1="352" y2="352" x1="64" />
+        <line x2="464" y1="32" y2="32" x1="400" />
+        <line x2="0" y1="-288" y2="-288" x1="64" />
+        <line x2="0" y1="-224" y2="-224" x1="64" />
+        <line x2="0" y1="-160" y2="-160" x1="64" />
+        <line x2="0" y1="-96" y2="-96" x1="64" />
+        <line x2="0" y1="-32" y2="-32" x1="64" />
+        <line x2="464" y1="-224" y2="-224" x1="400" />
+        <line x2="464" y1="-160" y2="-160" x1="400" />
+        <line x2="464" y1="-96" y2="-96" x1="400" />
+        <line x2="464" y1="-32" y2="-32" x1="400" />
+        <rect width="336" x="64" y="-320" height="704" />
+    </graph>
+</symbol>

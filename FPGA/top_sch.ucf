@@ -1,0 +1,99 @@
+
+//SPI Boot mode pins
+CONFIG PROHIBIT = P23;
+CONFIG PROHIBIT = P24;
+CONFIG PROHIBIT = P25;
+
+//SPI Variant Select Pins
+CONFIG PROHIBIT = P29;
+CONFIG PROHIBIT = P30;
+CONFIG PROHIBIT = P31;
+
+//PUDC_B Pull up config
+CONFIG PROHIBIT = P99;
+
+//MISO/DIN -> Q
+CONFIG PROHIBIT = P51;
+//CSO_B -> S_n
+CONFIG PROHIBIT = P27;
+//CCLK -> C
+CONFIG PROHIBIT = P53;
+//MOSI -> D
+CONFIG PROHIBIT = P46;
+
+//INIT_B Init done
+CONFIG PROHIBIT = P48;
+
+
+# Specifies the minimum (worst-case) Vccint voltage for improved timing analysis
+VOLTAGE  = 1.18;
+
+# Specifies the Vccaux voltage (Spartan-3A/6)
+CONFIG VCCAUX  = 3.3;
+			
+NET "clk_in" TNM_NET = "clk_in";
+TIMESPEC TS_clk_in = PERIOD "clk_in" 65.536 MHz HIGH 50 % INPUT_JITTER 3 ps;
+
+
+NET "SPI_CommandAndWriteEmpty" LOC = P90;
+NET "SPI_DataWAIT" LOC = P89;
+NET "SPI_MOSI" LOC = P84;
+NET "SPI_CurWordIsHeader" LOC = P88;
+NET "SPI_MISO" LOC = P85;
+NET "SPI_CS" LOC = P86;
+NET "SPI_clk" LOC = P83;
+
+#pin2ucf - Sun Mar 08 22:31:16 2015
+#The following constraints were newly added
+NET "writeData_n" LOC = P78;
+NET "writeData_p" LOC = P77;
+NET "drive_command_n" LOC = P44;
+NET "writeGate_n" LOC = P94;
+NET "writeGate_p" LOC = P93;
+NET "drive_command_p" LOC = P43;
+NET "drive_clock_n" LOC = P37;
+NET "drive_clock_p" LOC = P36;
+NET "Drive_sector_in" LOC = P82;
+NET "clk_in" LOC = P41;
+NET "crcInvalid" LOC = P20;
+NET "drive_ready" LOC = P61;
+NET "drive_sel0_n" LOC = P34;
+NET "drive_sel0_p" LOC = P32;
+NET "commandAndWriteFIFO_prog_full" LOC = P70;
+NET "drive_sel1_n" LOC = P35;
+NET "drive_sel1_p" LOC = P33;
+NET "Drive_mfm_in" LOC = P98;
+NET "rst_in" LOC = P21;
+
+
+# PlanAhead Generated IO constraints 
+
+NET "clk_in" IOSTANDARD = LVCMOS33;
+NET "commandAndWriteFIFO_prog_full" IOSTANDARD = LVCMOS33;
+NET "crcInvalid" IOSTANDARD = LVCMOS33;
+NET "Drive_mfm_in" IOSTANDARD = LVCMOS33;
+NET "drive_ready" IOSTANDARD = LVCMOS33;
+NET "Drive_sector_in" IOSTANDARD = LVCMOS33;
+NET "rst_in" IOSTANDARD = LVCMOS33;
+NET "SPI_clk" IOSTANDARD = LVCMOS33;
+NET "SPI_CommandAndWriteEmpty" IOSTANDARD = LVCMOS33;
+NET "SPI_CS" IOSTANDARD = LVCMOS33;
+NET "SPI_DataWAIT" IOSTANDARD = LVCMOS33;
+NET "SPI_MISO" IOSTANDARD = LVCMOS33 | SLEW=FAST;
+NET "SPI_MOSI" IOSTANDARD = LVCMOS33;
+NET "SPI_CurWordIsHeader" IOSTANDARD = LVCMOS33;
+
+NET "drive_clock_p" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+
+NET "drive_command_p" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+NET "drive_command_n" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+NET "drive_sel0_p" IOSTANDARD = LVCMOS33 | DRIVE=16;
+NET "drive_sel1_p" IOSTANDARD = LVCMOS33 | DRIVE=16;
+NET "writeData_p" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+NET "drive_clock_n" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+
+NET "drive_sel0_n" IOSTANDARD = LVCMOS33 | DRIVE=16;
+NET "drive_sel1_n" IOSTANDARD = LVCMOS33 | DRIVE=16;
+NET "writeData_n" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+NET "writeGate_p" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;
+NET "writeGate_n" IOSTANDARD = LVCMOS33 | SLEW=FAST | DRIVE=16;

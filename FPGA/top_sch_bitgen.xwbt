@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/christopher/RL02/FPGA/top_sch.ncd
+OUTFILE=/home/christopher/RL02/FPGA/top_sch.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s50a-4vq100
+WORKINGDIR=/home/christopher/RL02/FPGA
+LICENSE=WebPack
+USER_INFO=210899976_0_0_738
