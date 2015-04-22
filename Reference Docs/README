@@ -1,0 +1,1 @@
+Here is all the technical documentation I used to create the interface.  Specifically, take a look at "RL02 Theory Of Operation" for a complete listing of how the DEC RL02 operates, how data is encoded, and how a controller should interact with the drive.  Bitsavers made this project possible.

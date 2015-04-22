@@ -1,0 +1,5 @@
+Here is the Texas Instruments Code Composer Studio project used on the ARM micro-controller.
+
+In addition to CCS (http://processors.wiki.ti.com/index.php/Download_CCS), you will require the Tivaware Peripheral Driver Library and USB Library packages from TI (http://www.ti.com/tool/sw-tm4c).  On Linux, these EXEs can be sent to unzip directly.
+
+I would prefer to host the drivers here, but TI has some hideous licensing verbiage on their drivers, preventing redistribution.  I might move away from them in the future because of it.

@@ -1,0 +1,3 @@
+This folder contains the KiCad (https://launchpad.net/kicad) project files, schematic symbols, and related footprints as well as generated schematics and gerber files.
+
+I generally run the latest KiCad built from sources, so I may be using features that don't exist in the pre-built versions.
