@@ -265,6 +265,7 @@ void USB_MSC_Close(void *drive)
     if(drive == 0)
     	return;
 
+    free(sectorBuffer);
     //TODO Reset drive
 }
 
