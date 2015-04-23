@@ -1,4 +1,4 @@
-Here is the Texas Instruments Code Composer Studio project used on the ARM micro-controller.
+Here is the Texas Instruments Code Composer Studio project used on the ARM micro-controller.  This is in prototype condition, suitable for trying different communication approaches and not architected in any particular manner (i.e. a complete mess).
 
 In addition to CCS (http://processors.wiki.ti.com/index.php/Download_CCS), you will require the Tivaware Peripheral Driver Library and USB Library packages from TI (http://www.ti.com/tool/sw-tm4c).  On Linux, these EXEs can be sent to unzip directly.
 
