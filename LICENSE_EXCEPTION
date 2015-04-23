@@ -1,0 +1,6 @@
+The following are exempt from the provisions of the GNU General Public License:
+
+- Any libraries and support software created by Texas Instruments for use with
+  their micro-controller products
+
+- Any Xilinx IP cores or Xilinx provided support libraries

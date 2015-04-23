@@ -13,14 +13,8 @@ Reference Docs - Supporting documentation for the RL02 and related electronics
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version with the following exceptions:
-
-- Any libraries and support software created by Texas Instruments for
-  use with their micro-controller products are exempt from the GNU
-  General Public License.
-
-- Any Xilinx IP cores or Xilinx provided support libraries are exempt
-  from the GNU General Public License.
+(at your option) any later version with the exceptions listed in the
+LICENSE_EXCEPTION file.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
