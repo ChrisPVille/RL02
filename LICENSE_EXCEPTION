@@ -1,6 +1,5 @@
-The following are exempt from the provisions of the GNU General Public License:
+﻿The following are exempt from the provisions of the GNU General Public License:
 
-- Any libraries and support software created by Texas Instruments for use with
-  their micro-controller products
+* Any libraries and support software created by the microcontroller manufacturer for use with their micro-controller products
 
-- Any Xilinx IP cores or Xilinx provided support libraries
+* Any IP cores or bundled support libraries provided directly by the FPGA manufacturer
