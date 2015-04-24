@@ -1,10 +1,4 @@
-﻿Folder list:
-board          - KiCad project, schematics and gerbers for board
-FPGA           - Xilinx ISE Project
-uC             - TI CCS project and C sources for micro-controller
-Reference Docs - Supporting documentation for the RL02 and related
-
-# RL02-USB Interface Project
+﻿# RL02-USB Interface Project
 
 ## Overview
 
@@ -32,6 +26,15 @@ TODO: Expand
 
 TODO: Expand
 
+## How to Update
+
+```shell
+echo TODO
+```
+
+## Building The Sources
+
+TODO: Expand
 
 (C) 2015 Christopher Parish
 
