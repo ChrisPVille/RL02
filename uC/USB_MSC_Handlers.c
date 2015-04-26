@@ -19,7 +19,7 @@
 #include "usblib/device/usbdevice.h"
 #include "usblib/device/usbdmsc.h"
 
-#include "usb_msc_structs.h"
+#include "USB_MSC_Structures.h"
 
 //TODO File is a mess, re-architect so that the reading logic is smarter regarding seeks
 //Ideally, the controller will cache things as they fly by, but without a threading library
