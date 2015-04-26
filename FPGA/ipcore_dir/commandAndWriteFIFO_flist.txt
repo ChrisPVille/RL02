@@ -49,6 +49,7 @@ commandAndWriteFIFO/simulation/timing/wave_ncsim.sv
 commandAndWriteFIFO.asy
 commandAndWriteFIFO.gise
 commandAndWriteFIFO.ngc
+commandAndWriteFIFO.sym
 commandAndWriteFIFO.v
 commandAndWriteFIFO.veo
 commandAndWriteFIFO.xco
