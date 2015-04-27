@@ -1,1 +1,2 @@
 FPGA/ipcore_dir/* linguist-vendored
+*.h linguist-language=C
