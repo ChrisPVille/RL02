@@ -1,0 +1,22 @@
+﻿Digi-Key Part Number,Manufacturer,Manufacturer Part Number,Customer Reference,Quantity 1,Quantity 2,Quantity 3,Mfg Std Lead Time,Description,Comments,RoHS Status,Lead Free Status,REACH Status
+122-1592-ND,XILINX INC,XC3S50A-4VQG100C,MAIN FPGA,1,0,0,18 Weeks,IC FPGA 68 I/O 100VQFP,,RoHS Compliant,Lead free,Unaffected Dec-2014
+296-35812-ND,TEXAS INSTRUMENTS,TM4C1232D5PMI,MAIN UC,1,0,0,16 Weeks,IC MCU 32BIT 64KB FLASH 64LQFP,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2014
+296-6794-1-ND,TEXAS INSTRUMENTS (VA),AM26LV32CDR,DIFF RX,2,0,0,6 Weeks,IC QUAD DIFF LINE RCVR 16-SOIC,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2014
+CTX713LVCT-ND,CTS-FREQUENCY CONTROLS (VA),CB3LV-3I-65M5360,FPGA CLK,1,0,0,6 Weeks,OSC XO 65.536MHZ HCMOS TTL SMD,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Jul-2011
+AP2114HA-1.2TRG1DICT-ND,DIODES INCORPORATED (VA),AP2114HA-1.2TRG1,1.2V LDO,1,0,0,9 Weeks,IC REG LDO 1.2V 1A SOT223,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2014
+M25P10-AVMN6TPCT-ND,MICRON TECHNOLOGY INC (VA),M25P10-AVMN6TP,FPGA FLASH,1,0,0,12 Weeks,IC FLASH 1MBIT 50MHZ 8SO,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Aug-2011
+644-1187-1-ND,NDK (VA),NX5032GA-16MHZ-STD-CSK-4,UC CRYSTAL,1,0,0,8 Weeks,CRYSTAL 16.0000MHZ 8PF SMD,Alternate Packaging Exists,RoHS Compliant,Lead free by exemption,Unaffected Dec-2014
+587-3512-1-ND,TAIYO YUDEN (VA),UMK212BJ104KGHT,,12,0,0,5 Weeks,CAP CER 0.1UF 50V 10% X5R 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Not Available
+587-1300-1-ND,TAIYO YUDEN (VA),LMK212BJ106KG-T,,4,0,0,5 Weeks,CAP CER 10UF 10V 10% X5R 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Nov-2009
+587-1293-1-ND,TAIYO YUDEN (VA),EMK212BJ225KG-T,,2,0,0,5 Weeks,CAP CER 2.2UF 16V 10% X5R 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Nov-2009
+587-1291-1-ND,TAIYO YUDEN (VA),TMK212BJ105KG-T,,25,0,0,5 Weeks,CAP CER 1UF 25V 10% X5R 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Nov-2009
+609-3491-ND,FCI,67996-114HLF,SPI JUMPERS,1,0,0,6 Weeks,BERGSTIK II .100" DR STRAIGHT,,RoHS Compliant,Lead free,Unaffected Dec-2012
+609-3395-ND,FCI,67997-224HLF,DRIVE DISCONNECT HEADER,1,0,0,6 Weeks,CONN HEADER 24POS .100 STR 15AU,,RoHS Compliant,Lead free,Unaffected Dec-2012
+S9175-ND,SULLINS CONNECTOR SOLUTIONS,SBH11-PBPC-D20-ST-BK,DRIVE CONNECTOR,1,0,0,4 Weeks,CONN HEADER 2.54MM 40POS GOLD,,RoHS Compliant,Lead free,Unaffected Dec-2014
+609-4050-1-ND,FCI (VA),10103594-0001LF,,1,0,0,9 Weeks,CONN RCPT STD MICRO USB TYPE B,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2012
+311-1099-1-ND,YAGEO (VA),CC0805JRNPO9BN100,,3,0,0,20 Weeks,CAP CER 10PF 50V 5% NPO 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Jun-2014
+311-10.0KCRCT-ND,YAGEO (VA),RC0805FR-0710KL,,3,0,0,22 Weeks,RES SMD 10K OHM 1% 1/8W 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Jun-2014
+S9172-ND,SULLINS CONNECTOR SOLUTIONS,SBH11-PBPC-D10-ST-BK,UC JTAG,1,0,0,4 Weeks,CONN HEADER 2.54MM 20POS GOLD,,RoHS Compliant,Lead free,Unaffected Dec-2014
+MMQA6V2T1GOSCT-ND,ON SEMICONDUCTOR (VA),MMQA6V2T1G,ESD DIODES,3,0,0,4 Weeks,TVS DIODE 4VWM 9VC SC74-6,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2014
+AP2114H-3.3TRG1DICT-ND,DIODES INCORPORATED (VA),AP2114H-3.3TRG1,3.3V REG,1,0,0,9 Weeks,IC REG LDO 3.3V 1A SOT223,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Dec-2014
+RHM330KCT-ND,ROHM SEMICONDUCTOR (PASSIVE) (VA),ESR10EZPJ331,TERMINATION RESISTORS,26,0,0,6-8 Weeks,RES SMD 330 OHM 5% 0.4W 0805,Alternate Packaging Exists,RoHS Compliant,Lead free,Unaffected Jun-2012
