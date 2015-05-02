@@ -4,7 +4,7 @@ uC/.settings
 uC/.launches
 
 FPGA/_xmsgs/
-FPGA/ipcore_dir/_xmsgs/cg.xmsgs
+FPGA/ipcore_dir/_xmsgs/
 FPGA/ipcore_dir/commandAndWriteFIFO/
 FPGA/ipcore_dir/dataFIFO/
 FPGA/ipcore_dir/tmp/
