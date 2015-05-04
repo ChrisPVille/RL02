@@ -3,6 +3,9 @@ uC/Release/
 uC/.settings
 uC/.launches
 
+FPGA/*.prm
+FPGA/*.cfi
+FPGA/*.mcs
 FPGA/_xmsgs/
 FPGA/ipcore_dir/_xmsgs/
 FPGA/ipcore_dir/commandAndWriteFIFO/
