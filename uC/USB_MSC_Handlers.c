@@ -45,6 +45,34 @@ struct
     uint_fast8_t driveFlags;
 } driveInstance;
 
+void SPITx(uint32_t tx)
+{
+    uint32_t dummy = 0;
+    SSIDataPut(SSI0_BASE,tx);
+    while(SSIBusy(SSI0_BASE)) ;
+    SSIDataGet(SSI0_BASE, &dummy);
+}
+
+void SPIRx(uint32_t *rx)
+{
+    uint32_t dummy;
+    SSIDataPut(SSI0_BASE,0);
+    while(SSIBusy(SSI0_BASE)) ;
+    if(!rx)
+    {
+        SSIDataGet(SSI0_BASE, &dummy);
+    }
+    else
+    {
+        SSIDataGet(SSI0_BASE, rx);
+    }
+}
+
+void waitForData()
+{
+    while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
+}
+
 //This is the first pass at the seek function.
 //Now that crunch time is over, the entire USB end needs some rearchitecting
 //
@@ -66,7 +94,6 @@ int32_t seek(void *drive, uint_fast8_t head, uint_fast16_t track)
     uint32_t headerWord = 0;
     uint32_t reservedWord = 0;
     uint32_t CRC = 0;
-    uint32_t dontCare = 0;
 
     if(head>1 || track > 511)
     {
@@ -86,10 +113,7 @@ int32_t seek(void *drive, uint_fast8_t head, uint_fast16_t track)
         while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
         if(!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_6)) //If this isn't a header word
         {
-            //Discard a word
-            SSIDataPut(SSI0_BASE,0);
-            while(SSIBusy(SSI0_BASE)) ;
-            SSIDataGet(SSI0_BASE, &dontCare);
+            SPIRx(0);
         }
         else //If this is a header word
         {
@@ -97,27 +121,21 @@ int32_t seek(void *drive, uint_fast8_t head, uint_fast16_t track)
             uint8_t crcPack[2];
 
             //Store the word in the proper place
-            SSIDataPut(SSI0_BASE,0);
-            while(SSIBusy(SSI0_BASE)) ;
-            SSIDataGet(SSI0_BASE, &headerWord);
+            SPIRx(&headerWord);
 
             crcPack[0] = headerWord & 0xFF;
             crcPack[1] = (headerWord>>8) & 0xFF;
             calculatedCRC = Crc16(0, (const uint8_t*)crcPack, 2);
 
-            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-            SSIDataPut(SSI0_BASE, 0);
-            while(SSIBusy(SSI0_BASE)) ;
-            SSIDataGet(SSI0_BASE, &reservedWord);
+            waitForData();
+            SPIRx(&reservedWord);
 
             crcPack[0] = reservedWord & 0xFF;
             crcPack[1] = (reservedWord>>8) & 0xFF;
             calculatedCRC = Crc16(calculatedCRC, (const uint8_t*)crcPack, 2);
 
-            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-            SSIDataPut(SSI0_BASE, 0);
-            while(SSIBusy(SSI0_BASE)) ;
-            SSIDataGet(SSI0_BASE, &CRC);
+            waitForData();
+            SPIRx(&CRC);
 
             if(CRC != calculatedCRC)
             {
@@ -190,9 +208,7 @@ int32_t seek(void *drive, uint_fast8_t head, uint_fast16_t track)
 
                 while(!GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2)) ;  //Wait for the command FIFO to empty
                 //Issue the move command
-                SSIDataPut(SSI0_BASE, position);
-                while(SSIBusy(SSI0_BASE)) ;
-                SSIDataGet(SSI0_BASE, &dontCare);
+                SPITx(position);
 
                 //Invalidate the read cache
                 for(i = 0; i<40; i++)
@@ -334,20 +350,16 @@ uint32_t USB_MSC_Read(void *drive, uint8_t *data, uint32_t sectorNum, uint32_t c
                 {
                     for(i = 0; i<128; i++)
                     {
-                        while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                        SSIDataPut(SSI0_BASE, 0);
-                        while(SSIBusy(SSI0_BASE)) ;
-                        SSIDataGet(SSI0_BASE, &dataWord);
+                        waitForData();
+                        SPIRx(&dataWord);
 
                         sectorBuffer[i+(sectorNumberFromDrive*128)] = dataWord; //Cache the value
 
                         if(i == 127) //Last Word
                         {
                             //TODO Check the data CRC
-                            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                            SSIDataPut(SSI0_BASE, 0);
-                            while(SSIBusy(SSI0_BASE)) ;
-                            SSIDataGet(SSI0_BASE, &dataCRCWord);
+                            waitForData();
+                            SPIRx(&dataCRCWord);
                         }
                     }
                     sectorBufferValid[sectorNumberFromDrive] = 1; //Mark the sector as cached
@@ -356,30 +368,22 @@ uint32_t USB_MSC_Read(void *drive, uint8_t *data, uint32_t sectorNum, uint32_t c
                 {
                     while(1)
                     {
-                        while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
+                        waitForData();
                         if(!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_6)) //If this isn't a header word
                         {
                             //Discard a word
-                            SSIDataPut(SSI0_BASE,0);
-                            while(SSIBusy(SSI0_BASE)) ;
-                            SSIDataGet(SSI0_BASE, &dontCare);
+                            SPIRx(&dontCare);
                         }
                         else
                         {
-                            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                            SSIDataPut(SSI0_BASE,0);
-                            while(SSIBusy(SSI0_BASE)) ;
-                            SSIDataGet(SSI0_BASE, &headerWord);
+                            waitForData();
+                            SPIRx(&headerWord);
 
-                            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                            SSIDataPut(SSI0_BASE, 0);
-                            while(SSIBusy(SSI0_BASE)) ;
-                            SSIDataGet(SSI0_BASE, &reservedWord);
+                            waitForData();
+                            SPIRx(&reservedWord);
 
-                            while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                            SSIDataPut(SSI0_BASE, 0);
-                            while(SSIBusy(SSI0_BASE)) ;
-                            SSIDataGet(SSI0_BASE, &headerCRCWord);
+                            waitForData();
+                            SPIRx(&headerCRCWord);
 
                             //TODO Check CRC
 
@@ -393,25 +397,28 @@ uint32_t USB_MSC_Read(void *drive, uint8_t *data, uint32_t sectorNum, uint32_t c
 
             //At this point, we're on the right track, right head, right sector
 
+            uint16_t calculatedCRC = 0;
             for(i = 0; i<128; i++)
             {
-                while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                SSIDataPut(SSI0_BASE, 0);
-                while(SSIBusy(SSI0_BASE)) ;
-                SSIDataGet(SSI0_BASE, &dataWord);
+                uint8_t crcPack[2];
+
+                waitForData();
+                SPIRx(&dataWord);
 
                 //TODO Figure out the word/byte swapping necessary for the common data storage mode (8/12/16 bit disk storage mode? Need expert information)
                 data[(i*2) + (completedBlocks*2*132)] = dataWord & 0xFF;
                 data[(i*2) + (completedBlocks*2*132) + 1] = dataWord>>8 & 0xFF;
                 sectorBuffer[i+(sectorNumberFromDrive*128)] = dataWord; //Cache the value
 
+                crcPack[0] = dataWord & 0xFF;
+                crcPack[1] = (dataWord>>8) & 0xFF;
+                calculatedCRC = Crc16(calculatedCRC, (const uint8_t*)crcPack, 2);
+
                 if(i == 127) //Last Word
                 {
                     //TODO Check the data CRC
-                    while(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)) ;  //Wait for valid data
-                    SSIDataPut(SSI0_BASE, 0);
-                    while(SSIBusy(SSI0_BASE)) ;
-                    SSIDataGet(SSI0_BASE, &dataCRCWord);
+                    waitForData();
+                    SPIRx(&dataCRCWord);
                 }
             }
             sectorBufferValid[sectorNumberFromDrive] = 1; //Mark the sector as cached
@@ -428,6 +435,82 @@ uint32_t USB_MSC_Write(void *drive, uint8_t *data, uint32_t sectorNum, uint32_t 
     if(drive == 0)
         return 0;
 
-    //Prevent the user from writing until FPGA support is fully qualified
-    return 0;
+    sectorNum *= 2;
+    count *= 2;
+
+    uint_fast8_t sector = 0;
+    uint_fast8_t head = 0;
+    uint_fast16_t track = 0;
+
+    uint_fast32_t completedBlocks = 0;
+    while(completedBlocks<count)
+    {
+        //Looks like simh uses this layout for logical access. It's not physically optimal.
+        head = sectorNum+completedBlocks > 20479 ? 1 : 0;
+        sector = (sectorNum+completedBlocks) % 40;
+        track = ((sectorNum+completedBlocks) / 40) % 512;
+
+        //This is how the RL02 User guide lists linear access
+        /*/ /Entire track, alternating heads
+        head = (sectorNum+completedBlocks) % 80 > 39 ? 1 : 0;
+        sector = ((sectorNum+completedBlocks) % 40);
+        track = ((sectorNum+completedBlocks) / 80) % 512;
+        */
+
+        int32_t ret;
+        uint32_t dataWord;
+
+        ret = seek(drive, head, track); //Seeks are internally a NOP if we're on it.
+        if(ret<0) //If the seek failed
+        {
+            //There's no way to indicate what type of failure occured to the PC, so just tell it we're returning 0 sectors
+            return 0;
+        }
+
+        dataWord = 0b0100000000000000; //The Write Sector Word
+
+        SPITx(dataWord); //Command the drive to write
+
+        dataWord = (sector & 0b111111);//Give the drive the sector we want to write
+
+        SPITx(dataWord);
+
+        //Data Preamble
+        dataWord = 0;
+        SPITx(dataWord);
+        SPITx(dataWord);
+        SPITx(dataWord);
+
+        sectorBufferValid[sector] = 0; //Mark the sector as not cached
+
+        uint16_t calculatedCRC = 0;
+        for(i = 0; i<128; i++)
+        {
+            uint8_t crcPack[2];
+
+            dataWord = data[(i*2)+(completedBlocks*256)] & 0xFF;
+            dataWord |= (data[(i*2)+(completedBlocks*256)+1] & 0xFF) << 8;
+
+            crcPack[0] = dataWord;
+            crcPack[1] = (dataWord>>8);
+            calculatedCRC = Crc16(calculatedCRC, (const uint8_t*)crcPack, 2);
+
+            SPITx(dataWord);
+
+            sectorBuffer[i+(sector*128)] = dataWord; //Cache the value
+
+            if(i == 127) //Last Word
+            {
+                SPITx(calculatedCRC);
+            }
+        }
+
+        dataWord = 0;//Data Postamble
+        SPITx(dataWord);
+
+        completedBlocks++;
+        //At this point, the FPGA should begin writting data to the drive
+    }
+
+    return(count * 256);
 }
