@@ -66,7 +66,7 @@ module driveControl(
 		CNC_DECODE              = 4'b0010, //Instruction Decode
 		CNC_SEEK_CMD_SETUP      = 4'b0011, //Prepare the command to move the drive
 		CNC_CMD_SECTORWAIT      = 4'b0100, //Wait for the sector pulse
-		CNC_CMD_EXECUTE    	    = 4'b0101, //Issue the command to seek
+		CNC_CMD_EXECUTE    	   = 4'b0101, //Issue the command to seek
 		CNC_SEEK_WAIT           = 4'b0110, //Wait for drive ready
 		CNC_WRITE_SETUP         = 4'b0111, //Gather the sector requested from the drive and prep the write queue
 		CNC_WRITE_SYNC          = 4'b1000, //Wait for the FIFO to fill enough, then wait for our sector number to come up
@@ -210,7 +210,6 @@ module driveControl(
 				
 				CNC_WRITE_SYNC: //Wait for the FIFO to fill enough, then wait for our sector number to come up
 				begin //What an ugly combinatorial path... Some of this can be pipelined if it's necessary
-					FIFOReadEnable <= 0;//
 					if(SPIProgFull) begin //Fist off, make sure we have a full set of data to write
 						if(sectorNumInReady) begin //If the sector number from the header decoder is valid now
 							if(desiredSector == sectorNumIn) begin //If we've found the winning number
@@ -227,8 +226,13 @@ module driveControl(
 				//TODO Also, CRC is probably failing at some point
 				CNC_WRITE_EXECUTE: //Execute the write bits
 				begin
-					FIFOReadEnable <= 0;
-					writeGate <= 1;
+				
+					//What should this module do?
+					//133 times, read in word from FIFO
+						//16 times inside that, process each bit in the word
+							//16 times inside that, shift out the current bit with whatever compensation it requires
+				
+					//writeGate <= 1; //TODO Testing to ensure no writes occure
 					if(curSPIBit == 15) begin
 						FIFOReadEnable <= 1;//We are going to be reading from the FIFO next clock
 					end

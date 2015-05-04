@@ -127,7 +127,7 @@ module headerDecode(
 				  end
 				end
 			 end
-        HDR_CRC: //TODO Make this check the CRC
+        HDR_CRC:
           begin
 				if(doCRCCompare) begin
 					if(onDiskCRC != computedCRC) begin

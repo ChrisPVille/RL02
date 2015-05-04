@@ -107,7 +107,7 @@ module decodeFSM(clk, rst, currentRealBit, currentRealBitValid, sectorPulse, pro
             end
             
           end
-        DSFM_PO1: //TODO Be careful with the last bit, as after 16, there might be nothing to enter the for loop with. May need to exit on 15th bit and let the idle counter below handle a small delay
+        DSFM_PO1:
 		  begin
 		  	if(currentRealBitValid) begin
 				if(headerbitCounter < 16) begin 
@@ -119,7 +119,7 @@ module decodeFSM(clk, rst, currentRealBit, currentRealBitValid, sectorPulse, pro
 				end
 			end
 		  end
-        DSFM_IT_IDLE: //TODO Check the timing and make sure we don't smash everything
+        DSFM_IT_IDLE: //If we are going to write, now is the time
 		  begin
 				beginWriteNow <= 0;
             decode_state <= DSFM_PR2;
