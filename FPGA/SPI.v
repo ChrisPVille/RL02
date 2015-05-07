@@ -27,6 +27,8 @@ assign miso = miso_q;
 assign done = done_q;
 assign dout = dout_q;
 
+//TODO Document that chip select needs to be asserted at least 1/65Mhz before sck due to metastability concerns
+
 always @(*) begin
     ss_d = ss;
     mosi_d = mosi;

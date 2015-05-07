@@ -87,6 +87,7 @@ module top_sch(clk_in,
 	wire [15:0] internalMOSI;
 	wire [16:0] internalMISO;
 	wire [15:0] SPICommandWord;
+	wire SPI_clk_sync;
 	
 	assign SPI_CurWordIsHeader = internalMISO[16];
 															
@@ -115,7 +116,7 @@ module top_sch(clk_in,
 				 .ss(SPI_CS),
 				 .mosi(SPI_MOSI),
 				 .miso(SPI_MISO),
-				 .sck(SPI_clk),
+				 .sck(SPI_clk_sync),
 				 .done(SPIInterface_DataAvailable),
 				 .din(internalMISO[15:0]),
 				 .dout(internalMOSI));
@@ -180,7 +181,11 @@ module top_sch(clk_in,
                            .clk(clk_in), 
                            .rst(rst_in), 
                            .sync_out(driveReady));
-
+	
+	inputSync  SPIclkSync (.async_in(SPI_clk), 
+                           .clk(clk_in), 
+                           .rst(rst_in), 
+                           .sync_out(SPI_clk_sync));
 						 
    driveControl  driveControl0 (.clk(clk_in), 
 												 .cylNumIn(cylNum[8:0]), 
